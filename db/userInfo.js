@@ -1,7 +1,7 @@
 const queryPromise  = require("./connection.js")
 
 exports.setUserInfo = function(data){
-  const sql = `INSERT INTO user_info (uid, username, sex, age, bgimage) VALUES ('${data.uid}', '${data.name}', ${data.sex}, ${data.age}, '${data.bgimage}')`;
+  const sql = `INSERT INTO user_info (uid, password) VALUES ('${data.uid}', '${data.password}')`;
   return queryPromise(sql)
 }
 
@@ -17,5 +17,10 @@ exports.selectAllUser = function () {
 
 exports.selectUser = function (uid) {
   const sql = `SELECT * FROM user_info WHERE uid = '${uid}'`;
+  return queryPromise(sql)
+}
+
+exports.checkUser = function (uid, password) {
+  const sql = `SELECT * FROM user_info WHERE uid = '${uid}',password = '${password}'`;
   return queryPromise(sql)
 }

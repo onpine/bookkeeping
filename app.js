@@ -9,15 +9,12 @@ const app  = express();
 
 // 处理跨域， 使用cors实现
 app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Orgin', '*')
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-headers', 'Content-Type,Authorization') // 允许的请求头
-  res.setHeader('Access-Control_Allow-Methods', 'GET,POST,DELETE,PUT,OPTIONS')
-  console.log(req.method)
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,DELETE,PUT,OPTIONS')
   if (req.method === 'OPTIONS') {
-    console.log('end')
-    res.end()
+    res.status(200).send()
   } else {
-    console.log('next')
     next()
   }
 })
