@@ -1,12 +1,17 @@
 const queryPromise  = require("./connection.js")
 
-exports.setUserInfo = function(data){
+exports.setNewUser = function(data){
   const sql = `INSERT INTO user_info (uid, password) VALUES ('${data.uid}', '${data.password}')`;
   return queryPromise(sql)
 }
 
-exports.updateUserInfo = function(){
-  const sql = "UPDATE user_info SET sex = 2, age = 23 WHERE uid = 0002";
+exports.updateRecords = function(uid,records){
+  const sql = `UPDATE user_info SET noteList = '${records}' WHERE uid = '${uid}'`;
+  return queryPromise(sql)
+}
+
+exports.pullRecords = function(uid){
+  const sql = `SELECT noteList FROM user_info WHERE uid = '${uid}'`;
   return queryPromise(sql)
 }
 
@@ -15,7 +20,7 @@ exports.selectAllUser = function () {
   return queryPromise(sql)
 }
 
-exports.selectUser = function (uid) {
+exports.selectUserUid = function (uid) {
   const sql = `SELECT * FROM user_info WHERE uid = '${uid}'`;
   return queryPromise(sql)
 }
