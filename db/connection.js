@@ -16,10 +16,6 @@ function queryPromise(sql) {
         resolve(results);
       }
     })
-  }).then(result => {
-    return result;
-  }).catch(error => {
-    throw error;
   })
 }
 
